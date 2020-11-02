@@ -18,14 +18,56 @@ router.get('/', async (req: Request, res: Response) => {
 
 //@TODO
 //Add an endpoint to GET a specific resource by Primary Key
+router.get('/:id', async (req: Request, res: Response) => {
+    let { id } = req.params;
+    const item = await FeedItem.findByPk(id);
+    if (!item)
+        return res.status(500)
+                    .send('item unavailable');
+
+    if (item.url) {
+        item.url = AWS.getGetSignedUrl(item.url);
+        
+    }
+    res.send(item);
+    
+
+    /*const nodeId: number = req.params.id;
+    const oneitem = await FeedItem.findByPk(nodeId);
+    if (!oneitem) {
+        return res.status(404)
+                    .send('No item present');
+    } else {
+        if (oneitem.url) {
+            oneitem.url = AWS.getGetSignedUrl(oneitem.url);
+        }
+
+        return res.status(200)
+                .send(oneitem);
+    }
+ */
+});
 
 // update a specific resource
 router.patch('/:id', 
     requireAuth, 
     async (req: Request, res: Response) => {
         //@TODO try it yourself
-        res.send(500).send("not implemented")
-});
+      //req.query.tagId
+        const id = req.query.id;
+        const caption = req.query.caption;
+        console.log("caption " + caption);
+        console.log("id: " + id);
+        const item = await FeedItem.update({ "caption": caption }, {
+            where: {
+                "id": id
+            }
+        });
+        return res.send('Item modifyied!');
+        
+    
+    }); 
+
 
 
 // Get a signed url to put a new item in the bucket
