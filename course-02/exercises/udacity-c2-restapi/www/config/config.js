@@ -11,6 +11,10 @@ exports.config = {
         "aws_region": "eu-west-3",
         "aws_profile": "default",
         "aws_media_bucket": "caabucket4exercise"
+        //These are my constants, but not going to make them environmental variables
+    },
+    "jwt": {
+        "secret": "LongEnoughStringToDoTokenStuff"
     },
     "prod": {
         "username": "",

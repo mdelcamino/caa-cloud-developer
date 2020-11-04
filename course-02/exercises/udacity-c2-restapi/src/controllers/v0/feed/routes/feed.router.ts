@@ -29,7 +29,8 @@ router.get('/:id', async (req: Request, res: Response) => {
         item.url = AWS.getGetSignedUrl(item.url);
         
     }
-    res.send(item);
+    return res.status(200)
+                .send(item);
     
 
     /*const nodeId: number = req.params.id;
@@ -63,7 +64,8 @@ router.patch('/:id',
                 "id": id
             }
         });
-        return res.send('Item modifyied!');
+        return res.status(200)
+            .send('Item modifyied!');
         
     
     }); 

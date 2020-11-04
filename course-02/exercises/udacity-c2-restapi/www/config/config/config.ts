@@ -8,7 +8,12 @@ export const config = {
         "aws_region": "eu-west-3", //process.env.AWS_REGION,
         "aws_profile": "default", //process.env.AWS_PROFILE,
         "aws_media_bucket": "caabucket4exercise"
-  },
+        //These are my constants, but not going to make them environmental variables
+
+    },
+    "jwt": {
+        "secret": "LongEnoughStringToDoTokenStuff"
+    },
   "prod": {
     "username": "",
     "password": "",
