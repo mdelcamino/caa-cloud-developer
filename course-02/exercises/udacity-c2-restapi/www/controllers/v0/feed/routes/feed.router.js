@@ -55,7 +55,8 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     if (item.url) {
         item.url = AWS.getGetSignedUrl(item.url);
     }
-    res.send(item);
+    return res.status(200)
+        .send(item);
     /*const nodeId: number = req.params.id;
     const oneitem = await FeedItem.findByPk(nodeId);
     if (!oneitem) {
@@ -84,7 +85,8 @@ router.patch('/:id', auth_router_1.requireAuth, (req, res) => __awaiter(void 0, 
             "id": id
         }
     });
-    return res.send('Item modifyied!');
+    return res.status(200)
+        .send('Item modifyied!');
 }));
 // Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName', auth_router_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
