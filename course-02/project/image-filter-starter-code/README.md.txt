@@ -7,7 +7,8 @@ My part of the project is:
 -. [The Image Filtering Microservice]It is a Node-Express application which runs a simple script to process images. 
 
 ### Github link 
-https://github.com/mdelcamino/caa-cloud-developer/blob/dev/course-02/project/image-filter-starter-code/
+https://github.com/mdelcamino/caa-cloud-developer/course-02/project/image-filter-starter-code/
+Developing on dev branch and when running ok to master branch.
 
 
 ## Tasks done:
