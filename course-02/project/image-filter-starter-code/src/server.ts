@@ -33,18 +33,19 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     app.get("/filteredimage", async (req, res) => {
         try {
             //validate parameter from url
-            let imageUrl = req.query.image_url as string;
+            let imageUrl: string = req.query.image_url;
+            
             if (!imageUrl) {
                 return res.status(422)
                     .send("Invalid field: a param for image_url should be included");
             }
             //take the parameter from the url and send it to be filtered
-            const fileImage = await filterImageFromURL(imageUrl)  //;res.status(200).sendFile(fileImage, () => { deleteLocalFiles([fileImage]) });
+            await filterImageFromURL(imageUrl) 
                 .then(
-                    imageFilter => {
-                        res.status(200).sendFile(imageFilter,
+                    filteredImage => {
+                        res.status(200).sendFile(filteredImage,
                             () => {
-                                deleteLocalFiles([imageFilter]);
+                                deleteLocalFiles([filteredImage]);
                             }
                         );
 
